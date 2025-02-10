@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title">Полезные материалы</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #333333;
+            margin: 0 15px;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #3882fc;
+        }
+
+        .navbar a.active {
+            color: #3882fc;
+            border-bottom: 2px solid #3882fc;
+            padding-bottom: 5px;
+        }
+
+        .navbar .login {
+            background-color: #6ba2fa;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar .login:hover {
+            background-color: #3882fc;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: left;
+            margin-left: 20%;
+            margin-right: 20%;
+            height: auto;
+        }
+
+        h2 {
+            color: #354a82;
+        }
+
+        h3 {
+            color: #354a82;
+        }
+
+        ul {
+            margin: 10px 0;
+        }
+
+        .contact-section {
+            background-color: #f9f9f9;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 28px;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        .contact-section p {
+            font-size: 18px;
+            color: #666666;
+            margin-bottom: 20px;
+        }
+
+        .contact-section a {
+            text-decoration: none;
+            color: #6ba2fa;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo" style="font-weight: bold;">EvalExpert</div>
+        <div class="nav-links">
+            <a href="/">Главная</a>
+            <a href="/tests">Тесты</a>
+            <a class="active" href="#">Отзывы</a>
+            <a id="profile2" href>Профиль</a>
+            <script>
+                function getCookie(name) {
+                    const value = `; ${document.cookie}`;
+                    const parts = value.split(`; ${name}=`);
+                    if (parts.length === 2) return parts.pop().split(';').shift();
+                }
+                const profileLink2 = document.getElementById("profile2");
+                const mail2 = getCookie("username");
+                if (mail2) {
+                    profileLink2.href = "/profile";
+                }
+                else {
+                    profileLink2.href = "/login";
+                }
+            </script>
+            <a href="/hr">HR</a>
+            <a href="/materials">Полезные материалы</a>
+        </div>
+        <a id="profile" class="login" href style="color : #ffffff;">
+        </a>
+        <script>
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
+            const mail_c = getCookie("username");
+            const mail = decodeURIComponent(getCookie("username"));
+            const profileLink = document.getElementById("profile");
+            if (mail_c) {
+                profileLink.textContent = mail;
+                profileLink.href = "/profile";
+            }
+            else {
+                profileLink.textContent = "Войти";
+                profileLink.href = "/login";
+            }
+        </script>
+    </div>
+    <div class="container">
+        <h2>Пожалуйста, войдите, чтобы оставить отзыв!</h2>
+    </div>
+    <div class="contact-section">
+        <h2>Свяжитесь с нами</h2>
+        <p>Если у вас есть вопросы или предложения, не стесняйтесь
+            обращаться к нам!</p>
+        <p>Email: <a href="mailto:info@evalexpert.com">info@evalexpert.com</a></p>
+        <p>Телефон: <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+    </div>
+</body>
+
+</html>

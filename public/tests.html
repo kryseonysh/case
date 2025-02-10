@@ -1,0 +1,249 @@
+<html>
+
+<head>
+    <title>
+        Каталог тестов
+    </title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #333333;
+            margin: 0 15px;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #3882fc;
+        }
+
+        .navbar a.active {
+            color: #3882fc;
+            border-bottom: 2px solid #3882fc;
+            padding-bottom: 5px;
+        }
+
+        .navbar .login {
+            background-color: #6ba2fa;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar .login:hover {
+            background-color: #3882fc;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .container h1 {
+            font-size: 20px;
+
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        .test-card {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            border: 2px solid #6ba2fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .test-card .content {
+            flex: 1;
+        }
+
+        .test-card .content h2 {
+            font-size: 18px;
+            color: #333333;
+            margin: 0 0 10px;
+        }
+
+        .test-card .content p {
+            font-size: 14px;
+            color: #333333;
+            margin: 0 0 10px;
+        }
+
+        .test-card .content .btn {
+            background-color: #6ba2fa;
+            color: #ffffff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .test-card .content .btn:hover {
+            background-color: #3882fc;
+        }
+
+        .contact-section {
+            background-color: #f9f9f9;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .contact-section h2 {
+            font-size: 28px;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        .contact-section p {
+            font-size: 18px;
+            color: #666666;
+            margin-bottom: 20px;
+        }
+
+        .contact-section a {
+            text-decoration: none;
+            color: #6ba2fa;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo" style="font-weight: bold;">
+            EvalExpert
+        </div>
+        <div class="nav-links">
+            </a>
+            <a href="/">
+                Главная
+            </a>
+            <a class="active" href="tests">
+                Тесты
+            </a>
+            <a href="reviews">
+                Отзывы
+            </a>
+            <a id="profile2" href="">Профиль</a>
+            <script>
+                function getCookie(name) {
+                    const value = `; ${document.cookie}`;
+                    const parts = value.split(`; ${name}=`);
+                    if (parts.length === 2) return parts.pop().split(';').shift();
+                }
+                const profileLink2 = document.getElementById("profile2");
+                const mail2 = getCookie("username");
+                if (mail2) {
+                    profileLink2.href = "profile";
+                }
+                else {
+                    profileLink2.href = "login";
+                }
+            </script>
+            <a href="hr">
+                HR
+            </a>
+            <a href="materials">
+                Полезные материалы
+            </a>
+        </div>
+        <a id="profile" class="login" href="" style="color : #ffffff;">
+        </a>
+        <script>
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
+            const mail_c = getCookie("username");
+            const mail = decodeURIComponent(getCookie("username"));
+            const profileLink = document.getElementById("profile");
+            if (mail_c) {
+                profileLink.textContent = mail;
+                profileLink.href = "profile";
+            }
+            else {
+                profileLink.textContent = "Войти";
+                profileLink.href = "login";
+            }
+        </script>
+    </div>
+    <div class="container">
+        <h1>
+            Каталог тестов
+        </h1>
+        <div id="test-card">
+        </div>
+    </div>
+    </div>
+    <script>
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+        async function get_test_info(position) {
+            const response = await fetch(`http://localhost:3001/api/tests/${position}`);
+            const tests = await response.text();
+            const testList = JSON.parse(tests);
+            const testsCard = document.getElementById('test-card');
+            testList.forEach(test => {
+                const testCard = document.createElement('div');
+                testCard.className = 'test-card';
+                testCard.innerHTML = `
+                            <div class="content">
+                            <h2>${test.typetestname}</h2>
+                            <p>${test.typetestdesc}</p>
+                            <a class="btn" href="test/${test.typetestid}">Пройти тест</a>
+                        </div>
+                    `;
+                testsCard.appendChild(testCard);
+            });
+        };
+        const empid = getCookie("empid");
+        const positionid = getCookie("positionid");
+        if (positionid) {
+            get_test_info(positionid);
+        }
+        else {
+            document.getElementById("test-card").textContent = "Войдите, чтобы увидеть список тестов.";
+        }
+    </script>
+    <div class="contact-section">
+        <h2>Свяжитесь с нами</h2>
+        <p>Если у вас есть вопросы или предложения, не стесняйтесь обращаться к нам!</p>
+        <p>Email: <a href="mailto:info@evalexpert.com">info@evalexpert.com</a></p>
+        <p>Телефон: <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+    </div>
+</body>
+
+</html>

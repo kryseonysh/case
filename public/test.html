@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Прохождение теста</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #333333;
+            margin: 0 15px;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #3882fc;
+        }
+
+        .navbar a.active {
+            color: #3882fc;
+            border-bottom: 2px solid #3882fc;
+            padding-bottom: 5px;
+        }
+
+        .navbar .login {
+            background-color: #6ba2fa;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar .login:hover {
+            background-color: #3882fc;
+        }
+
+        .container1 {
+            display: flex;
+            border-bottom: 1px solid #e0e0e0;
+            height: 100vh;
+            background-image: radial-gradient(circle, #438afd, #669eff, #85b1ff, #a2c4ff, #bfd7ff);
+            color: #ffffff;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .container1 .h1 {
+            font-size: 30px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .container1 .p1 {
+            font-size: 18px;
+            text-align: center;
+            max-width: 50%;
+        }
+
+        .container1 .button {
+            padding: 10px;
+            border: 2px solid #ffffff;
+            border-radius: 20px;
+            background-color: #ffffff;
+            color: #354a82;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        .container1 .button:hover {
+            background-color: #6ba2fa;
+        }
+
+        .container2 {
+            display: flex;
+            height: auto;
+            background-image: radial-gradient(circle, #438afd, #669eff, #85b1ff, #a2c4ff, #bfd7ff);
+            color: #ffffff;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .content {
+            display: flex;
+            text-align: start;
+            width: 70%;
+            align-items: center;
+            flex-direction: column;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .question {
+            font-size: 24px;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            padding: 0.5em;
+            margin-bottom: 0.5em;
+            background-color: #ffffff;
+            border: 1px solid #ffffff;
+            border-radius: 4px;
+            transition: background-color 0.2s, border-color 0.2s;
+            color: #354a82;
+        }
+
+        .radio-label:hover {
+            background-color: #BFD7FF;
+            border-color: #BFD7FF;
+        }
+
+        .radio-input {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .radio-input:checked+.radio-label {
+            background-color: #93bbff;
+            border-color: #354a82;
+        }
+
+        .radio-input:focus+.radio-label {
+            outline: 2px solid #354a82;
+        }
+
+        .radio-inner-circle {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            border: 2px solid #354a82;
+            border-radius: 50%;
+            margin-right: 0.5em;
+            transition: border-color 0.2s;
+            position: relative;
+        }
+
+        .radio-label:hover .radio-inner-circle {
+            border-color: #2d4587;
+        }
+
+        .radio-input:checked+.radio-label .radio-inner-circle {
+            border-color: #2d4587;
+        }
+
+        .radio-input:checked+.radio-label .radio-inner-circle::after {
+            content: '';
+            display: block;
+            width: 0.5em;
+            height: 0.5em;
+            background-color: #354a82;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .submit-button {
+            padding: 10px;
+            border: 2px solid #ffffff;
+            border-radius: 20px;
+            background-color: #ffffff;
+            color: #354a82;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        .submit-button:hover {
+            background-color: #6ba2fa;
+        }
+
+        .contact-section {
+            background-color: #f9f9f9;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 28px;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        .contact-section p {
+            font-size: 18px;
+            color: #666666;
+            margin-bottom: 20px;
+        }
+
+        .contact-section a {
+            text-decoration: none;
+            color: #6ba2fa;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo" style="font-weight: bold;">EvalExpert</div>
+        <div class="nav-links">
+            <a href="/">Главная</a>
+            <a href="/tests">Тесты</a>
+            <a href="/reviews">Отзывы</a>
+            <a id="profile2" href="">Профиль</a>
+            <script>
+                function getCookie(name) {
+                    const value = `; ${document.cookie}`;
+                    const parts = value.split(`; ${name}=`);
+                    if (parts.length === 2) return parts.pop().split(';').shift();
+                }
+                const profileLink2 = document.getElementById("profile2");
+                const mail2 = getCookie("username");
+                if (mail2) {
+                    profileLink2.href = "/profile";
+                }
+                else {
+                    profileLink2.href = "/login";
+                }
+            </script>
+            <a href="/hr">HR</a>
+            <a href="/materials">Полезные материалы</a>
+        </div>
+        <a id="profile" class="login" href="" style="color : #ffffff;">
+        </a>
+        <script>
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
+            const mail_c = getCookie("username");
+            const mail = decodeURIComponent(getCookie("username"));
+            const profileLink = document.getElementById("profile");
+            if (mail_c) {
+                profileLink.textContent = mail;
+                profileLink.href = "/profile";
+            }
+            else {
+                profileLink.textContent = "Войти";
+                profileLink.href = "/login";
+            }
+        </script>
+    </div>
+    <div class="container1" id="container1">
+    </div>
+    <div class="container2" id="container2">
+    </div>
+    <div class="contact-section">
+        <h2>Свяжитесь с нами</h2>
+        <p>Если у вас есть вопросы или предложения, не стесняйтесь обращаться к нам!</p>
+        <p>Email: <a href="mailto:info@evalexpert.com">info@evalexpert.com</a></p>
+        <p>Телефон: <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const testid = window.location.pathname.split('/').pop();
+        async function main() {
+            async function get_test_info(id) {
+                const response = await fetch(`http://localhost:3001/api/tests/info/${id}`);
+                const data = await response.text();
+                const testList = JSON.parse(data);
+                const tests = document.getElementById('container1');
+                tests.innerHTML = '';
+                testList.forEach(test => {
+                    const testName = document.createElement('h1');
+                    testName.textContent = test.typetestname;
+                    const testDesc = document.createElement('p');
+                    testDesc.className = 'p1';
+                    testDesc.textContent = test.typetestdesc;
+                    tests.appendChild(testName);
+                    tests.appendChild(testDesc);
+                });
+                const Button = document.createElement('div');
+                Button.className = 'button';
+                Button.textContent = 'Начать тест';
+                const targetSection = document.getElementById('container2');
+                Button.addEventListener('click', () => {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                });
+                tests.appendChild(Button);
+            };
+            let userAnswers = [];
+            async function make_test(id) {
+                const response = await fetch(`http://localhost:3001/api/test/${id}`);
+                const test = await response.text();
+                const questions = JSON.parse(test);
+                const container = document.getElementById('container2');
+                questions.forEach((item, index) => {
+                    const contentDiv = document.createElement('div');
+                    contentDiv.className = 'content';
+                    contentDiv.id = index + 1;
+                    const questionDiv = document.createElement('div');
+                    questionDiv.className = 'question';
+                    questionDiv.textContent = item.question;
+                    const radioGroupDiv = document.createElement('div');
+                    radioGroupDiv.className = 'radio-group';
+                    const options = [item.vara, item.varb, item.varc, item.vard];
+                    const letters = ['A', 'B', 'C', 'D'];
+                    options.forEach((option, i) => {
+                        const input = document.createElement('input');
+                        input.className = 'radio-input';
+                        input.name = `radio-group-${index + 1}`;
+                        input.id = `radio${i + 1}-${index + 1}`;
+                        input.type = 'radio';
+                        input.value = letters[i];
+                        const label = document.createElement('label');
+                        label.className = 'radio-label';
+                        label.setAttribute('for', `radio${i + 1}-${index + 1}`);
+                        label.innerHTML = `<span class="radio-inner-circle"></span>${option}`;
+                        radioGroupDiv.appendChild(input);
+                        radioGroupDiv.appendChild(label);
+                    });
+                    console.log(index, item.answer);
+                    contentDiv.appendChild(questionDiv);
+                    contentDiv.appendChild(radioGroupDiv);
+                    container.appendChild(contentDiv);
+                    radioGroupDiv.addEventListener('change', (event) => {
+                        userAnswers[index] = event.target.value;
+                    });
+                });
+                const submitButton = document.createElement('div');
+                submitButton.className = 'submit-button';
+                submitButton.textContent = 'Завершить тест';
+                submitButton.addEventListener('click', () => {
+                    let score = 0;
+                    console.log("userAnswers", userAnswers);
+                    questions.forEach((item, index) => {
+                        if (item.answer == userAnswers[index]) score = score + 10;
+                    });
+                    async function send_result() {
+                        let jsonresult = {
+                            typetestid: testid,
+                            empid: getCookie("empid"),
+                            testresult: score
+                        };
+                        let response = await fetch(`http://localhost:3001/api/result`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json;charset=utf-8'
+                            },
+                            body: JSON.stringify(jsonresult)
+                        });
+                    }
+                    send_result();
+                    alert(`Тест завершен! Ваш результат: ${score}`);
+                    window.location.href = '/profile';
+                });
+                container.appendChild(submitButton);
+            }
+            await get_test_info(testid);
+            await make_test(testid);
+        }
+
+        main();
+    </script>
+</body>
+
+</html>

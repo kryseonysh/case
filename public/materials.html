@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title">Полезные материалы</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #333333;
+            margin: 0 15px;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #3882fc;
+        }
+
+        .navbar a.active {
+            color: #3882fc;
+            border-bottom: 2px solid #3882fc;
+            padding-bottom: 5px;
+        }
+
+        .navbar .login {
+            background-color: #6ba2fa;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar .login:hover {
+            background-color: #3882fc;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: left;
+            margin-left: 20%;
+            margin-right: 20%;
+            height: auto;
+        }
+
+        h2 {
+            color: #354a82;
+        }
+
+        h3 {
+            color: #354a82;
+        }
+
+        ul {
+            margin: 10px 0;
+        }
+
+        .contact-section {
+            background-color: #f9f9f9;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 28px;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        .contact-section p {
+            font-size: 18px;
+            color: #666666;
+            margin-bottom: 20px;
+        }
+
+        .contact-section a {
+            text-decoration: none;
+            color: #6ba2fa;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo" style="font-weight: bold;">EvalExpert</div>
+        <div class="nav-links">
+            <a href="/">Главная</a>
+            <a href="/tests">Тесты</a>
+            <a href="/reviews">Отзывы</a>
+            <a id="profile2" href>Профиль</a>
+            <script>
+                function getCookie(name) {
+                    const value = `; ${document.cookie}`;
+                    const parts = value.split(`; ${name}=`);
+                    if (parts.length === 2) return parts.pop().split(';').shift();
+                }
+                const profileLink2 = document.getElementById("profile2");
+                const mail2 = getCookie("username");
+                if (mail2) {
+                    profileLink2.href = "/profile";
+                }
+                else {
+                    profileLink2.href = "/login";
+                }
+            </script>
+            <a href="/hr">HR</a>
+            <a class="active" href="#">Полезные материалы</a>
+        </div>
+        <a id="profile" class="login" href style="color : #ffffff;">
+        </a>
+        <script>
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
+            const mail_c = getCookie("username");
+            const mail = decodeURIComponent(getCookie("username"));
+            const profileLink = document.getElementById("profile");
+            if (mail_c) {
+                profileLink.textContent = mail;
+                profileLink.href = "/profile";
+            }
+            else {
+                profileLink.textContent = "Войти";
+                profileLink.href = "/login";
+            }
+        </script>
+    </div>
+    <div class="container">
+        <h2>Рекомендации для улучшения коммуникативных навыков:</h2>
+        <h3>Активное слушание</h3>
+        <p>Сосредоточьтесь на собеседнике, задавайте уточняющие вопросы и
+            отражайте его чувства. Это поможет установить доверительные
+            отношения.</p>
+
+        <h3>Чтение и обсуждение</h3>
+        <p>Читайте книги и статьи, а затем обсуждайте их с друзьями или
+            знакомыми. Это не только расширяет кругозор.</p>
+
+        <h3>Невербальная коммуникация</h3>
+        <p>Обратите внимание на свою мимику, жесты и позу. Поддерживайте
+            зрительный контакт и улыбайтесь.</p>
+
+        <h3>Практика публичных выступлений</h3>
+        <p>Участвуйте в мероприятиях, где нужно выступать перед аудиторией.
+            Это поможет вам научиться выражать свои мысли чётко и
+            уверенно.</p>
+
+        <h3>Использование технологий</h3>
+        <p>Запишите свою речь на диктофон и проанализируйте её. Обратите
+            внимание на интонацию, скорость и эмоциональность.</p>
+
+        <h3>Книги и курсы</h3>
+        <p>Изучите литературу по теме, например:</p>
+        <ul>
+            <li>Дейл Карнеги «Как завоёвывать друзей и оказывать влияние на
+                людей».</li>
+            <li>Джеймс Борг «Секреты общения. Магия слов».</li>
+        </ul>
+
+        <h3>Упражнения на развитие</h3>
+        <p>Попробуйте различные игры и упражнения, такие как «Крокодил» или
+            «Продай мне ручку», чтобы развить креативность и коммуникативные
+            навыки.</p>
+        <p>Эти рекомендации помогут вам стать более уверенным и эффективным
+            собеседником.</p>
+
+        <h2>Рекомендации для улучшения креативных навыков:</h2>
+        <h3>Чтение книг по креативности</h3>
+        <ul>
+            <li>"Креативность: как развить в себе творческий потенциал" —
+                Эдвард де Боно.</li>
+            <li>"В поисках креативности" — Джулия Кэмерон.</li>
+            <li>"Творческий подход к решению проблем" — Джеймс У. Ян.</li>
+        </ul>
+
+        <h3>Практика креативного мышления</h3>
+        <ul>
+            <li>Мозговой штурм: Регулярно проводите сессии мозгового штурма,
+                чтобы генерировать идеи без критики.</li>
+            <li>Дневник идей: Ведите дневник, в который записывайте все свои
+                идеи, даже самые необычные.</li>
+        </ul>
+
+        <h3>Игры и упражнения</h3>
+        <ul>
+            <li>Креативные игры: Играйте в игры, которые требуют
+                креативности, такие как "Крокодил" или "Импровизация".</li>
+            <li>Упражнения на ассоциации: Выберите случайное слово и
+                запишите все ассоциации, которые приходят в голову.</li>
+        </ul>
+
+        <h3>Изучение искусства и дизайна</h3>
+        <p>Посетите художественные выставки, музеи или курсы по рисованию и
+            дизайну.</p>
+
+        <h3>Общение с креативными людьми</h3>
+        <p>Окружите себя людьми, которые вдохновляют вас и имеют креативный
+            подход к жизни.</p>
+
+        <h3>Медитация и mindfulness</h3>
+        <p>Практики медитации и осознанности могут помочь вам очистить ум и
+            открыть новые пути для креативного мышления.</p>
+
+        <h2>Рекомендации для улучшения адаптивных навыков:</h2>
+        <h3>Чтение книг по адаптивности и гибкости</h3>
+        <ul>
+            <li>"Гибкое мышление: как адаптироваться к изменениям и преодолевать трудности"
+                — Лаура Хендрикс.</li>
+            <li>"Mindset: The New Psychology of Success" — Кэрол Двек.</li>
+            <li>"The Resilience Factor" — Karen Reivich и Andrew
+                Shatté.</li>
+        </ul>
+
+        <h3>Практика адаптивного мышления</h3>
+        <ul>
+            <li>Ситуационные упражнения: Регулярно ставьте себя в новые
+                ситуации, которые требуют адаптации.</li>
+            <li>Рефлексия: После каждой новой ситуации анализируйте, как вы
+                адаптировались.</li>
+        </ul>
+
+        <h3>Развитие эмоционального интеллекта</h3>
+        <ul>
+            <li>Книги: "Эмоциональный интеллект" — Дэниел Гоулман.</li>
+        </ul>
+
+        <h3>Общение и сотрудничество</h3>
+        <p>Участвуйте в групповых проектах или волонтерских инициативах.</p>
+
+        <h3>Управление стрессом</h3>
+        <p>Изучите техники управления стрессом, такие как медитация, йога
+            или дыхательные упражнения.</p>
+
+        <h3>Гибкость в планировании</h3>
+        <p>Учитесь планировать с учетом возможных изменений.</p>
+
+        <h2>Рекомендации для улучшения управленческих качеств:</h2>
+        <h3>Чтение книг по управлению</h3>
+        <ul>
+            <li>"7 навыков высокоэффективных людей" — Стивен Кови.</li>
+            <li>"Лидерство и самообман" — Арбингер Институт.</li>
+            <li>"Управление проектами для чайников" — Стенли П. Б. К.</li>
+        </ul>
+
+        <h3>Практика управления</h3>
+        <ul>
+            <li>Участие в проектах: Примите участие в управлении проектами
+                на работе или в волонтерских организациях.</li>
+            <li>Наставничество: Найдите наставника, который может поделиться
+                опытом.</li>
+        </ul>
+
+        <h3>Развитие эмоционального интеллекта</h3>
+        <ul>
+            <li>Книги: "Эмоциональный интеллект" — Дэниел Гоулман.</li>
+        </ul>
+
+        <h3>Общение и обратная связь</h3>
+        <p>Практикуйте активное слушание и давайте конструктивную обратную
+            связь своей команде.</p>
+
+        <h3>Стратегическое мышление</h3>
+        <p>Изучите методы стратегического планирования и анализа, такие как
+            SWOT-анализ.</p>
+
+        <h3>Управление временем</h3>
+        <ul>
+            <li>Изучите техники управления временем, такие как метод
+                Помодоро или матрица Эйзенхауэра.</li>
+            <li>Книга "Как привести дела в порядок" — Дэвид Аллен.</li>
+        </ul>
+
+        <h2>Рекомендации для улучшения знаний по программному
+            обеспечению:</h2>
+        <h3>Чтение книг по программному обеспечению</h3>
+        <ul>
+            <li>"Clean Code: A Handbook of Agile Software Craftsmanship" —
+                Роберт Мартин.</li>
+            <li>"The Pragmatic Programmer: Your Journey To Mastery" — Эндрю
+                Хант и Дэвид Томас.</li>
+            <li>"Design Patterns: Elements of Reusable Object-Oriented Software"
+                — Эрих Гамма и др.</li>
+        </ul>
+
+        <h3>Статьи и блоги</h3>
+        <ul>
+            <li>Medium: The Startup — блог, где можно найти статьи о
+                программировании, стартапах и технологиях.</li>
+            <li>Dev.to: Dev Community — платформа для разработчиков, где
+                можно найти статьи, руководства и обсуждения.</li>
+        </ul>
+
+        <h3>Подкасты</h3>
+        <ul>
+            <li>"Software Engineering Daily" — подкаст, который охватывает
+                широкий спектр тем.</li>
+            <li>"The Changelog" — подкаст о программном обеспечении с
+                интервью с разработчиками.</li>
+            <li>"Coding Blocks" — подкаст, посвященный программированию и
+                разработке программного обеспечения.</li>
+        </ul>
+
+        <h3>Практика программирования</h3>
+        <ul>
+            <li>LeetCode: LeetCode — платформа для решения задач по
+                программированию.</li>
+            <li>HackerRank: HackerRank — сайт с задачами по программированию
+                и соревнованиями.</li>
+        </ul>
+
+        <h2>Рекомендации для улучшения знаний по Python:</h2>
+        <h3>Чтение книг по Python</h3>
+        <ul>
+            <li>"Python Crash Course" — Эрик Маттес.</li>
+            <li>"Fluent Python" — Лучано Рамальо.</li>
+        </ul>
+
+        <h3>Статьи и блог</h3>
+        <ul>
+            <li>Real Python: сайт с множеством статей, руководств и видео по
+                Python.</li>
+            <li>Towards Data Science: блог на Medium, где можно найти статьи
+                о Python.</li>
+        </ul>
+
+        <h3>Подкасты</h3>
+        <ul>
+            <li>"Talk Python To Me" — подкаст, посвященный Python.</li>
+            <li>"Python Bytes" — подкаст, который охватывает последние
+                новости в мире Python.</li>
+            <li>"The Real Python Podcast" — подкаст с интервью с
+                экспертами.</li>
+        </ul>
+
+        <h3>Практика программирования</h3>
+        <ul>
+            <li>LeetCode: платформа для решения задач по программированию на
+                Python.</li>
+            <li>CodeRun – платформа для решения задач разной степени
+                сложности.</li>
+        </ul>
+
+        <h3>Участие в сообществах</h3>
+        <p>Присоединяйтесь к онлайн-сообществам, таким как Stack Overflow
+            или Reddit.</p>
+
+        <h2>Рекомендации для улучшения знаний по аналитике данных:</h2>
+        <h3>Чтение книг по аналитике данных</h3>
+        <ul>
+            <li>"Data Science for Business: What You Need to Know about Data Mining and Data-Analytic Thinking"
+                — Foster Provost и Tom Fawcett.</li>
+            <li>"Python for Data Analysis" — Wes McKinney.</li>
+            <li>"The Data Warehouse Toolkit: The Definitive Guide to Dimensional Modeling"
+                — Ralph Kimball.</li>
+        </ul>
+
+        <h3>Статьи и блоги</h3>
+        <ul>
+            <li>KDnuggets: сайт с новостями и ресурсами по аналитике
+                данных.</li>
+        </ul>
+
+        <h3>Подкасты</h3>
+        <ul>
+            <li>"Data Skeptic" — подкаст, который обсуждает различные
+                аспекты науки о данных.</li>
+            <li>"Not So Standard Deviations" — подкаст о аналитике данных и
+                статистике.</li>
+            <li>"The Data Science Podcast" — подкаст о науке о данных.</li>
+        </ul>
+
+        <h3>Практика анализа данных</h3>
+        <ul>
+            <li>Kaggle: платформа для соревнований по анализу данных.</li>
+            <li>Google Data Analytics Certificate: бесплатный курс от
+                Google.</li>
+        </ul>
+
+        <h3>Участие в сообществах</h3>
+        <p>Присоединяйтесь к онлайн-сообществам, таким как Stack Overflow
+            или Reddit.</p>
+
+        <h2>Рекомендации для улучшения знаний по SQL:</h2>
+        <h3>Чтение книг по SQL</h3>
+        <ul>
+            <li>"SQL for Data Analysis" — Уэсли Чан.</li>
+            <li>"Learning SQL" — Alan Beaulieu.</li>
+            <li>"SQL in 10 Minutes, Sams Teach Yourself" — Ben Forta.</li>
+        </ul>
+
+        <h3>Видеоуроки и лекции</h3>
+        <ul>
+            <li>YouTube: freeCodeCamp.org — канал с полными курсами по
+                SQL.</li>
+            <li>YouTube: The Net Ninja — канал с обучающими видео по
+                SQL.</li>
+        </ul>
+
+        <h3>Статьи и блоги</h3>
+        <ul>
+            <li>SQLZoo: интерактивный сайт с уроками и задачами по SQL.</li>
+            <li>Mode Analytics: бесплатный учебник по SQL.</li>
+            <li>Towards Data Science: статьи о SQL.</li>
+        </ul>
+
+        <h3>Подкасты</h3>
+        <ul>
+            <li>"Data Skeptic" — подкаст о науке о данных.</li>
+            <li>"The SQL Server Radio Show" — подкаст о SQL Server.</li>
+        </ul>
+
+        <h3>Практика SQL</h3>
+        <ul>
+            <li>LeetCode: платформа для решения задач по SQL.</li>
+            <li>HackerRank: сайт с задачами по SQL.</li>
+        </ul>
+
+        <h3>Участие в сообществах</h3>
+        <p>Присоединяйтесь к онлайн-сообществам, таким как Stack Overflow
+            или Reddit.</p>
+
+        <h3>Участие в проектах с открытым исходным кодом</h3>
+        <p>Участвуйте в проектах на GitHub, чтобы получить практический опыт
+            работы с SQL.</p>
+
+    </div>
+    <div class="contact-section">
+        <h2>Свяжитесь с нами</h2>
+        <p>Если у вас есть вопросы или предложения, не стесняйтесь
+            обращаться к нам!</p>
+        <p>Email: <a href="mailto:info@evalexpert.com">info@evalexpert.com</a></p>
+        <p>Телефон: <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+    </div>
+</body>
+
+</html>

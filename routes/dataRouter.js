@@ -1,0 +1,22 @@
+const { Router } = require("express");
+const controller = require("c:/Users/m_gum/Documents/case/controllers/DataController");
+const router = Router();
+router.get("/all-results/:id", controller.get_all_test_results);
+router.get("/last-results/:id", controller.get_last_test_results);
+router.get("/emp-av", controller.employee_av_marks);
+router.get("/pos-av", controller.position_av_marks);
+router.get("/emp-id/:id", controller.getEmployeeById);
+router.get("/tests/info/:id", controller.get_test_info_by_id);
+router.get("/tests/:position", controller.get_test_info);
+router.get("/test/:id", controller.make_test);
+router.post("/result",controller.insert_result);
+router.get("/recomendation/:typetestid/:result",controller.recomendation);
+router.post("/add-emp",controller.add_employee);
+router.post("/rem-emp/", controller.removeEmployee);
+router.post("/add-test",controller.add_test);
+router.post("/add-question",controller.addQuestion);
+router.post("/add-feedback",controller.addFeedback);
+router.get("/comments/:id", controller.getInterview);
+router.post("/add-comment",controller.addInterview);
+
+module.exports = router;

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title"></title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #333333;
+            margin: 0 15px;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #3882fc;
+        }
+
+        .navbar a.active {
+            color: #3882fc;
+            border-bottom: 2px solid #3882fc;
+            padding-bottom: 5px;
+        }
+
+        .navbar .login {
+            background-color: #6ba2fa;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar .login:hover {
+            background-color: #3882fc;
+        }
+
+        .container {
+            display: flex;
+            height: auto;
+        }
+
+        .content {
+            display: flex;
+            flex: 1;
+        }
+
+        .left-panel,
+        .right-panel {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .left-panel {
+            margin-top: 20px;
+            background-color: #6ba2fa;
+            flex: 1;
+            max-width: 40%;
+            border-radius: 50px;
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .left-panel h2,
+        .left-panel p {
+            background-color: #6ba2fa;
+            color: #ffffff;
+            text-align: start;
+            width: 100%;
+        }
+
+        .left-panel .button {
+            width: 50%;
+            padding: 10px;
+            border: 2px solid #ffffff;
+            border-radius: 20px;
+            background-color: #ffffff;
+            text-decoration: none;
+            color: #354a82;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+
+        .left-panel .button:hover {
+            background-color: #6ba2fa;
+        }
+
+        .table {
+            text-align: left;
+            border-collapse: separate;
+            border-spacing: 5px;
+            background: #bfd7ff;
+            color: #354a82;
+            border: 16px solid #bfd7ff;
+            border-radius: 20px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th {
+            font-size: 18px;
+            padding: 10px;
+        }
+
+        td {
+            background: #ffffff;
+            padding: 10px;
+        }
+
+        .right-panel {
+            flex: 1;
+            background-color: #ffffff;
+        }
+
+        .right-panel .h1 {
+            font-size: 20px;
+            color: #354a82;
+            text-align: center;
+            width: 100%;
+        }
+
+        .right-panel #svg1 {
+            width: 100%;
+            flex-direction: row;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .right-panel #svg2 {
+            width: 100%;
+            flex-direction: row;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .right-panel .bar {
+            transition: fill 0.3s;
+        }
+
+        .right-panel .bar:hover {
+            opacity: 0.7;
+        }
+
+        .right-panel .line {
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .contact-section {
+            background-color: #f9f9f9;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 28px;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        .contact-section p {
+            font-size: 18px;
+            color: #666666;
+            margin-bottom: 20px;
+        }
+
+        .contact-section a {
+            text-decoration: none;
+            color: #6ba2fa;
+            font-weight: bold;
+        }
+
+        .container2 {
+            display: flex;
+            height: auto;
+            background-color: #ffffff;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .container2 .h3 {
+            display: flex;
+            margin-left: 20%;
+            margin-right: 20%;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            height: auto;
+            color: #354a82;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .container2 .p2 {
+            display: flex;
+            margin-left: 20%;
+            margin-right: 20%;
+            height: auto;
+            color: #354a82;
+            text-align: justify;
+            font-size: 16px;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .button {
+            width: 50%;
+            padding: 10px;
+            border: 2px solid #ffffff;
+            border-radius: 20px;
+            background-color: #6ba2fa;
+            text-decoration: none;
+            color: #354a82;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+
+        .button:hover {
+            background-color: #3882fc;
+        }
+
+        .comment-section {
+            display: flex;
+            flex-direction: column;
+            justify-items: center;
+            align-items: center;
+            width: 70%;
+        }
+
+        .comment-box {
+            display: flex;
+            background-color: #ffffff;
+            height: 150px;
+            width: 70%;
+            border-radius: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            padding: 10px;
+            box-sizing: border-box;
+            resize: none;
+            font-size: 16px;
+            border: 1px solid #333333;
+            color: #7d7d7d;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo" style="font-weight: bold;">EvalExpert</div>
+        <div class="nav-links">
+            <a href="/">Главная</a>
+            <a href="/tests">Тесты</a>
+            <a href="/reviews">Отзывы</a>
+            <a id="profile2" href="">Профиль</a>
+            <script>
+                function getCookie(name) {
+                    const value = `; ${document.cookie}`;
+                    const parts = value.split(`; ${name}=`);
+                    if (parts.length === 2) return parts.pop().split(';').shift();
+                }
+                const profileLink2 = document.getElementById("profile2");
+                const mail2 = getCookie("username");
+                if (mail2) {
+                    profileLink2.href = "/profile";
+                }
+                else {
+                    profileLink2.href = "/login";
+                }
+            </script>
+            <a class="active" href="/hr">HR</a>
+            <a href="/materials">Полезные материалы</a>
+        </div>
+        <a id="profile" class="login" href="" style="color : #ffffff;">
+        </a>
+        <script>
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
+            const mail_c = getCookie("username");
+            const mail = decodeURIComponent(getCookie("username"));
+            const profileLink = document.getElementById("profile");
+            if (mail_c) {
+                profileLink.textContent = mail;
+                profileLink.href = "/profile";
+            }
+            else {
+                profileLink.textContent = "Войти";
+                profileLink.href = "/login";
+            }
+        </script>
+    </div>
+    <div class="container">
+        <div class="left-panel">
+            <div class="employee-info" id="employee-info"></div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Тест</th>
+                        <th>Дата</th>
+                        <th>Результат</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body"></tbody>
+            </table>
+        </div>
+        <div class="right-panel">
+            <div class="h1">
+                Результаты последних тестов
+            </div>
+            <svg width="700" height="400" id="svg1"></svg>
+            <div class="h1" style="margin-top: 20px">
+                Изменение результатов по времени
+            </div>
+            <svg width="700" height="400" id="svg2"></svg>
+        </div>
+    </div>
+    <div class="container2">
+        <h class="h3">Коментарии о сотруднике:</h>
+        <table class="table" style="width:70%;">
+            <thead>
+                <tr>
+                    <th>ID HR</th>
+                    <th>Дата</th>
+                    <th>Комментарий</th>
+                </tr>
+            </thead>
+            <tbody id="comment-body"></tbody>
+        </table>
+        <h class="h3">Добавление комментария о сотруднике</h>
+        <div class="comment-section">
+            <textarea class="comment-box" placeholder="Введите ваш комментарий здесь..." name="comment"
+                required></textarea>
+            <button class="button" id="submit-button">Добавить комментарий</button>
+        </div>
+    </div>
+    <div class="contact-section">
+        <h2>Свяжитесь с нами</h2>
+        <p>Если у вас есть вопросы или предложения, не стесняйтесь обращаться к нам!</p>
+        <p>Email: <a href="mailto:info@evalexpert.com">info@evalexpert.com</a></p>
+        <p>Телефон: <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+    </div>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const empidurl = window.location.pathname.split('/').pop();
+        async function main() {
+            async function get_employee_info(id) {
+                const response = await fetch(`http://localhost:3001/api/emp-id/${id}`);
+                const data = await response.text();
+                const info = await JSON.parse(data);
+                const employeeCard = document.createElement('div');
+                employeeCard.className = 'employee-info';
+                info.forEach(element => {
+                    document.getElementById('title').textContent = `${element.empsurname} ${element.empname} ${element.emppatronymic}`;
+                    employeeCard.innerHTML = `
+                        <h2>${element.empsurname} ${element.empname} ${element.emppatronymic}</h2>
+                        <p>Должность: ${element.empposition}</p>
+                        <p>ID: ${element.empid}</p>
+                        <p>Email: ${element.empmail}</p>
+                    `;
+                    document.getElementById('employee-info').appendChild(employeeCard);
+                });
+            };
+            let typetestcompall = new Array();
+            let resall = new Array();
+            let dateall = new Array();
+            const options2 = {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            };
+            let alldata = null;
+            async function all_results(id) {
+                const response = await fetch(`http://localhost:3001/api/all-results/${id}`);
+                const data = await response.text();
+                const obj = JSON.parse(data);
+                alldata = obj;
+                const resultsBody = document.getElementById('table-body');
+                obj.forEach(item => {
+                    const row = resultsBody.insertRow();
+                    const formattedDate = new Date(item.testdate).toLocaleString('ru-RU', options2);
+                    dateall.push(formattedDate);
+                    typetestcompall.push(item.typetestname);
+                    resall.push(item.testresult);
+                    Object.entries(item).forEach(([key, value]) => {
+                        const cell = row.insertCell();
+                        if (key === 'testdate') {
+                            cell.textContent = formattedDate;
+                        } else {
+                            cell.textContent = value;
+                        }
+                    });
+                });
+            };
+            let lastdata = null;
+            async function last_results(id) {
+                const response2 = await fetch(`http://localhost:3001/api/last-results/${id}`);
+                const data = await response2.text();
+                const last_results = JSON.parse(data);
+                lastdata = last_results;
+            };
+            await all_results(empidurl);
+            await get_employee_info(empidurl);
+            await last_results(empidurl);
+            const data = lastdata;
+            console.log("lastdata", data);
+            const svgBar = d3.select("#svg1"),
+                marginBar = { top: 20, right: 30, bottom: 80, left: 40 },
+                widthBar = +svgBar.attr("width") - marginBar.left - marginBar.right,
+                heightBar = +svgBar.attr("height") - marginBar.top - marginBar.bottom,
+                gBar = svgBar.append("g").attr("transform", `translate(${marginBar.left},${marginBar.top})`);
+
+            const xBar = d3.scaleBand()
+                .domain(data.map(d => d.typetestname))
+                .range([0, widthBar])
+                .padding(0.1);
+
+            const yBar = d3.scaleLinear()
+                .domain([0, 100])
+                .nice()
+                .range([heightBar, 0]);
+
+            gBar.append("g")
+                .attr("class", "axis axis--x")
+                .attr("transform", `translate(0,${heightBar})`)
+                .call(d3.axisBottom(xBar))
+                .style("color", "#354a82")
+                .selectAll("text")
+                .each(function (d) {
+                    const text = d3.select(this);
+                    const words = text.text().split(" ");
+                    text.text("");
+                    words.forEach((word, i) => {
+                        const tspan = text.append("tspan")
+                            .text(word)
+                            .attr("x", 0)
+                            .attr("dy", i === 0 ? 0 : "1.2em");
+                    });
+                })
+                .attr("text-anchor", "center")
+                .style("font-size", "12px")
+                .style("line-height", "1.2")
+                .style("white-space", "pre-wrap")
+                .style("color", "#354a82");
+
+            gBar.append("g")
+                .attr("class", "axis axis--y")
+                .call(d3.axisLeft(yBar))
+                .style("color", "#354a82")
+
+            gBar.selectAll(".bar")
+                .data(data)
+                .enter().append("rect")
+                .attr("class", "bar")
+                .attr("x", d => xBar(d.typetestname))
+                .attr("y", d => yBar(+d.testresult))
+                .attr("width", xBar.bandwidth())
+                .attr("height", d => heightBar - yBar(+d.testresult))
+                .attr("fill", d => d.softtrue ? "#6ba2fa" : "#ff6b6b")
+                .append("title")
+                .text(d => "Результат: " + d.testresult);
+
+
+            // График
+
+            const dataAll = alldata;
+            dataAll.forEach(d => {
+                d.testdate = new Date(d.testdate);
+                d.testresult = +d.testresult;
+            });
+
+            // Настройки графика
+            const marginLine = { top: 20, right: 30, bottom: 30, left: 40 },
+                widthLine = 600 - marginLine.left - marginLine.right,
+                heightLine = 400 - marginLine.top - marginLine.bottom;
+
+            const svgLine = d3.select("#svg2")
+                .append("g")
+                .attr("transform", `translate(${marginLine.left},${marginLine.top})`);
+
+            const xLine = d3.scaleTime()
+                .domain(d3.extent(dataAll, d => d.testdate))
+                .range([0, widthLine]);
+
+            const yLine = d3.scaleLinear()
+                .domain([0, 100])
+                .range([heightLine, 0]);
+
+            const colorLine = d3.scaleOrdinal(d3.schemeTableau10);
+
+            const line = d3.line()
+                .x(d => xLine(d.testdate))
+                .y(d => yLine(d.testresult))
+                .curve(d3.curveCatmullRom);
+
+            const nestedData = d3.group(dataAll, d => d.typetestname);
+
+            nestedData.forEach((values, key) => {
+                svgLine.append("path")
+                    .datum(values)
+                    .attr("class", "line")
+                    .attr("d", line)
+                    .attr("stroke", colorLine(key));
+            });
+
+            const xAxis = d3.axisBottom(xLine)
+                .ticks(d3.timeMonth.every(1))
+                .tickFormat(d => {
+                    const date = d3.timeFormat("%B")(d);
+                    const year = d3.timeFormat("%Y")(d);
+                    return `${date}\n${year}`;
+                });
+
+            const xAxisGroup = svgLine.append("g")
+                .attr("class", "axis axis--x")
+                .attr("transform", `translate(0,${heightLine})`)
+                .call(xAxis)
+                .style("color", "#354a82");
+
+            xAxisGroup.selectAll("text")
+                .attr("dy", "1.2em")
+                .style("text-anchor", "middle")
+                .style("color", "#354a82")
+                .each(function (d) {
+                    const text = d3.select(this);
+                    const options = { month: 'long', year: 'numeric', locale: 'ru-RU' };
+                    const formattedDate = d.toLocaleString('ru-RU', options);
+                    const [month, year] = formattedDate.split(' ');
+                    text.text("");
+                    text.append("tspan").text(month.toLocaleString('ru-RU', options)).attr("x", 0).attr("dy", 0);
+                    text.append("tspan").text(year).attr("x", 0).attr("dy", "1.2em");
+                });
+
+            svgLine.append("g")
+                .attr("class", "axis axis--y")
+                .call(d3.axisLeft(yLine))
+                .style("color", "#354a82");
+
+            let i = 0;
+            const legend = svgLine.append("g")
+                .attr("transform", `translate(${widthLine - 100}, 20)`)
+                .style("font-size", "10px");
+
+            nestedData.forEach((values, key) => {
+                legend.append("rect")
+                    .attr("x", 27)
+                    .attr("y", i * 20)
+                    .attr("width", 15)
+                    .attr("height", 15)
+                    .style("fill", colorLine(key));
+
+                legend.append("text")
+                    .attr("x", 27 + 25)
+                    .attr("y", i * 20 + 20 / 2)
+                    .text(key);
+                i = i + 1;;
+            });
+        };
+
+        main();
+    </script>
+    <script>
+
+        async function main999() {
+            const options3 = {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            };
+            let alldate = new Array();
+            let emps = new Array();
+            let hrs = new Array();
+            let allcom = new Array();
+            async function get_comments(empid) {
+                const response = await fetch(`http://localhost:3001/api/comments/${empid}`);
+                const data = await response.text();
+                const comments = JSON.parse(data);
+                const resultsBody = document.getElementById("comment-body");
+                comments.forEach((item) => {
+                    const row = resultsBody.insertRow();
+                    const formattedDate = new Date(item.date).toLocaleString("ru-RU", options3);
+                    hrs.push(item.hrid);
+                    alldate.push(formattedDate);
+                    allcom.push(item.comment);
+                    Object.entries(item).forEach(([key, value]) => {
+                        const cell = row.insertCell();
+                        if (key === "date") {
+                            cell.textContent = formattedDate;
+                        } else {
+                            cell.textContent = value;
+                        }
+                    });
+                });
+            }
+            await get_comments(empidurl);
+            const submitButton = document.getElementById("submit-button");
+            submitButton.addEventListener("click", async () => {
+                const com = document.querySelector(
+                    'textarea[name="comment"]'
+                ).value;
+                let jsonresult = {
+                    empid: empidurl,
+                    hrid: getCookie("empid"),
+                    comment: com
+                };
+                try {
+                    let response = await fetch(`http://localhost:3001/api/add-comment`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json;charset=utf-8",
+                        },
+                        body: JSON.stringify(jsonresult),
+                    });
+
+                    if (!response.ok) {
+                        throw new Error("Ошибка при добавлении комментария");
+                    }
+                    alert(`Комментарий успешно добавлен!`);
+                } catch (error) {
+                    console.error("Ошибка:", error);
+                    alert(
+                        "Произошла ошибка при добавлении комментария. Пожалуйста, попробуйте еще раз."
+                    );
+                }
+            });
+        }
+        main999();
+    </script>
+</body>
+
+</html>

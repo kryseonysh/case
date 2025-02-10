@@ -1,0 +1,242 @@
+<html>
+
+<head>
+    <title>
+        EvalExpert
+    </title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #333333;
+            margin: 0 15px;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #3882fc;
+        }
+
+        .navbar a.active {
+            color: #3882fc;
+            border-bottom: 2px solid #3882fc;
+            padding-bottom: 5px;
+        }
+
+        .navbar .login {
+            background-color: #6ba2fa;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar .login:hover {
+            background-color: #3882fc;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 20px;
+        }
+
+        .content h1 {
+            font-size: 36px;
+            color: #333333;
+            margin-bottom: 20px;
+            margin-left: 5%;
+        }
+
+        .content p {
+            font-size: 18px;
+            color: #666666;
+            line-height: 1.6;
+            text-align: left;
+            max-width: 800px;
+            margin-bottom: 40px;
+            margin-left: 5%;
+        }
+
+        .content .button {
+            background-color: #6ba2fa;
+            color: #ffffff;
+            padding: 15px 30px;
+            border-radius: 30px;
+            margin-top: 30px;
+            text-decoration: none;
+            font-size: 18px;
+            margin-left: 5%;
+            transition: background-color 0.3s;
+        }
+
+        .content .button:hover {
+            background-color: #3882fc;
+        }
+
+        .illustration {
+            margin-top: 10px;
+        }
+
+        .illustration img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        @media (min-width: 768px) {
+            .content {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .content .text {
+                max-width: 50%;
+                text-align: left;
+            }
+
+            .content .illustration {
+                max-width: 50%;
+            }
+        }
+
+        .contact-section {
+            background-color: #f9f9f9;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .contact-section h2 {
+            font-size: 28px;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        .contact-section p {
+            font-size: 18px;
+            color: #666666;
+            margin-bottom: 20px;
+        }
+
+        .contact-section a {
+            text-decoration: none;
+            color: #6ba2fa;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo" style="font-weight: bold;">
+            EvalExpert
+        </div>
+        <div class="nav-links">
+            </a>
+            <a class="active" href="#">
+                Главная
+            </a>
+            <a href="tests">
+                Тесты
+            </a>
+            <a href="reviews">
+                Отзывы
+            </a>
+            <a id="profile2" href="">Профиль</a>
+            <script>
+                function getCookie(name) {
+                    const value = `; ${document.cookie}`;
+                    const parts = value.split(`; ${name}=`);
+                    if (parts.length === 2) return parts.pop().split(';').shift();
+                }
+                const profileLink2 = document.getElementById("profile2");
+                const mail2 = getCookie("username");
+                if (mail2) {
+                    profileLink2.href = "profile";
+                }
+                else {
+                    profileLink2.href = "login";
+                }
+            </script>
+            <a href="hr">
+                HR
+            </a>
+            <a href="materials">
+                Полезные материалы
+            </a>
+        </div>
+        <a id="profile" class="login" href="" style="color : #ffffff;">
+        </a>
+        <script>
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
+            const mail_c = getCookie("username");
+            const mail = decodeURIComponent(getCookie("username"));
+            const profileLink = document.getElementById("profile");
+            if (mail_c) {
+                profileLink.textContent = mail;
+                profileLink.href = "profile";
+            }
+            else {
+                profileLink.textContent = "Войти";
+                profileLink.href = "login";
+            }
+        </script>
+    </div>
+    <div class="content">
+        <div class="text">
+            <h1 style="text-align: left;">
+                Что такое EvalExpert?
+            </h1>
+            <p>
+                Это онлайн-система для оценки сотрудников и с помощью тестов. Позволяет просто и быстро получить
+                информацию о профессиональных и личных качествах, знаниях и навыках респондента, которые могут повлиять
+                на результаты трудовой деятельности и поведение в коллективе.
+            </p>
+            <a class="button" href="tests">
+                Выбрать и пройти тест
+            </a>
+        </div>
+        <div class="illustration">
+            <img alt="Illustration of people interacting with a large screen displaying various icons and charts"
+                height="400"
+                src="https://img.freepik.com/premium-vector/enterprise-architecture-abstract-concept-vector-illustration_107173-24885.jpg"
+                width="600" />
+        </div>
+    </div>
+    <div class="contact-section">
+        <h2>Свяжитесь с нами</h2>
+        <p>Если у вас есть вопросы или предложения, не стесняйтесь обращаться к нам!</p>
+        <p>Email: <a href="mailto:info@evalexpert.com">info@evalexpert.com</a></p>
+        <p>Телефон: <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+    </div>
+</body>
+
+</html>

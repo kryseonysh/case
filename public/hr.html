@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #333333;
+            margin: 0 15px;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #3882fc;
+        }
+
+        .navbar a.active {
+            color: #3882fc;
+            border-bottom: 2px solid #3882fc;
+            padding-bottom: 5px;
+        }
+
+        .navbar .login {
+            background-color: #6ba2fa;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar .login:hover {
+            background-color: #3882fc;
+        }
+
+        .container1 {
+            display: flex;
+
+            background-color: #ffffff;
+            height: 100vh;
+            color: #354a82;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .container1 h1 {
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .container1 .diagram {
+            display: flex;
+            width: 80%;
+            height: auto;
+            align-items: center;
+            flex-direction: row;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+
+        .container1 .buttons {
+            display: flex;
+            width: 70%;
+            height: auto;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .buttons .scroll-button {
+            display: flex;
+            width: 30%;
+            height: auto;
+            background-color: #6ba2fa;
+            color: #354a82;
+            border: 2px solid #6ba2fa;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+
+        .buttons .scroll-button:hover {
+            background-color: #ffffff;
+        }
+
+        .container2 {
+            display: flex;
+
+            border-bottom: 1px solid #e0e0e0;
+            height: auto;
+            background-image: radial-gradient(circle, #438afd, #669eff, #85b1ff, #a2c4ff, #bfd7ff);
+            color: #ffffff;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-container {
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        .form-title {
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            width: 45%;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            color: #ffffff;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="password"],
+        .form-group input[type="number"] {
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            font-size: 16px;
+            color: #354a82;
+        }
+
+        .form-group input[type="checkbox"] {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #354a82;
+            border-radius: 4px;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+        }
+
+        input[type="checkbox"]:checked {
+            background-color: #354a82;
+            border-color: #354a82;
+        }
+
+        input[type="checkbox"]:checked::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 6px;
+            width: 6px;
+            height: 12px;
+            border: solid #ffffff;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+            display: none;
+        }
+
+        input[type="checkbox"]:checked::after {
+            display: block;
+        }
+
+        .form-group.full-width {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            color: #ffffff;
+        }
+
+        .form-group.full-width input[type="submit"] {
+            background-color: #ffffff;
+            color: #354a82;
+            border: 2px solid #ffffff;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+
+        .form-group.full-width input[type="submit"]:hover {
+            background-color: #6ba2fa;
+        }
+
+        .container3 {
+            background-color: #6ba2fa;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+
+            height: auto;
+        }
+
+        .container3 h3 {
+            color: #ffffff;
+            display: flex;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .container3 .table {
+            text-align: left;
+            border-collapse: separate;
+            border-spacing: 5px;
+            background: #bfd7ff;
+            color: #354a82;
+            border: 16px solid #bfd7ff;
+            border-radius: 20px;
+            width: 70%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .container3 th {
+            font-size: 18px;
+            padding: 10px;
+        }
+
+        .container3 td {
+            background: #ffffff;
+            padding: 10px;
+        }
+
+        button {
+            padding: 10px;
+            border: 2px solid #354a82;
+            border-radius: 20px;
+            background-color: #ffffff;
+            color: #354a82;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+
+        button:hover {
+            background-color: #6ba2fa;
+        }
+
+        .contact-section {
+            background-color: #f9f9f9;
+            padding: 40px 20px;
+            text-align: center;
+
+        }
+
+        .contact-section h2 {
+            font-size: 28px;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        .contact-section p {
+            font-size: 18px;
+            color: #666666;
+            margin-bottom: 20px;
+        }
+
+        .contact-section a {
+            text-decoration: none;
+            color: #6ba2fa;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo" style="font-weight: bold;">EvalExpert</div>
+        <div class="nav-links">
+            <a href="/">Главная</a>
+            <a href="/tests">Тесты</a>
+            <a href="/reviews">Отзывы</a>
+            <a id="profile2" href="">Профиль</a>
+            <script>
+                function getCookie(name) {
+                    const value = `; ${document.cookie}`;
+                    const parts = value.split(`; ${name}=`);
+                    if (parts.length === 2) return parts.pop().split(';').shift();
+                }
+                const profileLink2 = document.getElementById("profile2");
+                const mail2 = getCookie("username");
+                if (mail2) {
+                    profileLink2.href = "profile";
+                }
+                else {
+                    profileLink2.href = "login";
+                }
+            </script>
+            <a class="active" href="#">HR</a>
+            <a href="/materials">Полезные материалы</a>
+        </div>
+        <a id="profile" class="login" href="" style="color : #ffffff;">
+        </a>
+        <script>
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
+            const mail_c = getCookie("username");
+            const mail = decodeURIComponent(getCookie("username"));
+            const profileLink = document.getElementById("profile");
+            if (mail_c) {
+                profileLink.textContent = mail;
+                profileLink.href = "profile";
+            }
+            else {
+                profileLink.textContent = "Войти";
+                profileLink.href = "login";
+            }
+        </script>
+    </div>
+    <div class="container1" id="container1">
+        <h1 class="h1">Диаграммы средних результатов по должностям</h1>
+        <div class="diagram">
+            <svg width="600" height="400" id="svg1"></svg>
+            <svg width="600" height="400" id="svg2"></svg>
+        </div>
+        <div class="buttons" id="buttons">
+        </div>
+    </div>
+    <div class="container2" id="container2">
+        <form class="form-container" id="form1" action="http://localhost:3001/api/add-emp" method="post">
+            <div class="form-title">Ввод данных сотрудника</div>
+            <div class="form-group">
+                <label for="surname">Фамилия:</label>
+                <input type="text" id="EmpSurname" name="EmpSurname" required pattern="[А-Я][а-я]+"
+                    title="Фамилия должна начинаться с заглавной буквы и содержать только буквы." />
+            </div>
+            <div class="form-group">
+                <label for="EmpPosition">Должность:</label>
+                <input type="text" id="EmpPosition" name="EmpPosition" required />
+            </div>
+            <div class="form-group">
+                <label for="EmpName">Имя:</label>
+                <input type="text" name="EmpName" id="EmpName" required pattern="[А-Я][а-я]+"
+                    title="Имя должно начинаться с заглавной буквы и содержать только буквы." />
+            </div>
+            <div class="form-group">
+                <label for="EmpMail">Электронная почта:</label>
+                <input type="email" id="EmpMail" name="EmpMail" required pattern="^[^@]+@[^@]+\.[^@]+$"
+                    title="Введите корректный адрес электронной почты." />
+            </div>
+            <div class="form-group">
+                <label for="EmpPatronymic">Отчество:</label>
+                <input type="text" id="EmpPatronymic" name="EmpPatronymic" pattern="[А-Я][а-я]+"
+                    title="Отчество должно начинаться с заглавной буквы и содержать только буквы." />
+            </div>
+            <div class="form-group">
+                <label for="EmpPassword">Пароль:</label>
+                <input type="password" id="EmpPassword" name="EmpPassword" required />
+            </div>
+            <div class="form-group full-width" id="submit1">
+                <input type="submit" value="Добавить сотрудника">
+            </div>
+        </form>
+        <form class="form-container" id="form2" action="http://localhost:3001/api/rem-emp/" method="post">
+            <div class="form-title">Удаление данных сотрудника</div>
+            <div class="form-group" style="flex-direction: row; width: 100%; justify-content: space-between;">
+                <label for="id" style="width: 45%">Введите ID сотрудника для удаления:</label>
+                <input type="number" id="id" name="empid" required style="width:42%; ">
+            </div>
+            <div class="form-group full-width" id="2">
+                <input type="submit" value="Удалить сотрудника" id="submit2">
+            </div>
+        </form>
+        <form class="form-container" id="form3" action="http://localhost:3001/api/add-test" method="POST">
+            <div class="form-title">Добавление нового теста</div>
+            <div class="form-group">
+                <label for="typetestname">Название теста:</label>
+                <input type="text" id="typetestname" name="TypeTestName" required>
+            </div>
+            <div class="form-group">
+                <label for="typetestcomp">Компетенция:</label>
+                <input type="text" id="typetestcomp" name="TypeTestComp" required>
+            </div>
+            <div class="form-group">
+                <label for="typetestdesc">Описание теста:</label>
+                <input type="text" id="typetestdesc" name="TypeTestDesc" required>
+            </div>
+            <div class="form-group">
+                <label for="position">ID Должности:</label>
+                <input type="number" id="position" name="Position"
+                    title="Введите ID должности или отметьте что тест относится к Soft Skills">
+            </div>
+            <div class="form-group">
+                <label for="softtrue">Soft:
+                    <input type="checkbox" id="softtrue" value="false" name="SoftTrue"
+                        style="display:flex; justify-self: center; align-self: center;"
+                        onchange="updateSoftTrueValue()">
+                </label>
+            </div>
+            <div class="form-group full-width">
+                <input type="submit" onsubmit="submitForm()" value="Добавить тест" id="submit3">
+            </div>
+        </form>
+
+        <form class="form-container" id="form4" action="http://localhost:3001/api/add-question" method="POST">
+            <div class="form-title">Добавление вопроса к тесту</div>
+            <div class="form-group">
+                <label for="vara">Вариант A:</label>
+                <input type="text" id="vara" name="VarA" required>
+            </div>
+            <div class="form-group">
+                <label for="typetestid">ID теста:</label>
+                <input type="number" id="typetestid" name="TypeTestId" required>
+            </div>
+            <div class="form-group">
+                <label for="varb">Вариант B:</label>
+                <input type="text" id="varb" name="VarB" required>
+            </div>
+            <div class="form-group">
+                <label for="question">Вопрос:</label>
+                <input type="text" id="question" name="Question" required>
+            </div>
+            <div class="form-group">
+                <label for="varc">Вариант C:</label>
+                <input type="text" id="varc" name="VarC" required>
+            </div>
+
+            <div class="form-group">
+                <label for="answer">Правильный ответ:</label>
+                <input type="text" id="answer" name="Answer" required pattern="[A-D]+"
+                    title="Вариант должен быть A, B, C или D">
+            </div>
+            <div class="form-group">
+                <label for="vard">Вариант D:</label>
+                <input type="text" id="vard" name="VarD" required>
+            </div>
+            <div class="form-group full-width">
+                <input type="submit" value="Добавить вопрос" id="submit4">
+            </div>
+        </form>
+    </div>
+    <div class="container3" id="container3">
+        <h3>Список сотрудников</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Фамилия</th>
+                    <th>Имя</th>
+                    <th>Отчество</th>
+                    <th>Должность</th>
+                    <th>Soft Skills</th>
+                    <th>Hard Skills</th>
+                    <th>Профиль</th>
+                </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+        </table>
+    </div>
+    <div class="contact-section">
+        <h2>Свяжитесь с нами</h2>
+        <p>Если у вас есть вопросы или предложения, не стесняйтесь обращаться к нам!</p>
+        <p>Email: <a href="mailto:info@evalexpert.com">info@evalexpert.com</a></p>
+        <p>Телефон: <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+    </div>
+    <script>
+        document.getElementById('form1').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+            fetch('http://localhost:3001/api/add-emp', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response;
+                })
+                .then(data => {
+                    console.log('Success:', data);
+                    alert('Сотрудник добавлен успешно!');
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('Произошла ошибка при добавлении сотрудника.');
+                });
+        });
+        function updateSoftTrueValue() {
+            const checkbox = document.getElementById('softtrue');
+            softtrue.value = checkbox.checked ? 'true' : 'false';
+        };
+
+        function submitForm() {
+            const checkbox = document.getElementById('softtrue');
+            checkbox.value = checkbox.checked ? 'true' : 'false';
+        }
+        document.getElementById('form2').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+            fetch(this.action, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response;
+                })
+                .then(data => {
+                    console.log('Успех:', data);
+                    alert('Сотрудник успешно удален!');
+                })
+                .catch((error) => {
+                    console.error('Ошибка:', error);
+                    alert('Произошла ошибка при удалении сотрудника.');
+                });
+        });
+
+        document.getElementById('form3').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            fetch(this.action, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response;
+                })
+                .then(data => {
+                    console.log('Успех:', data);
+                    alert('Тест успешно добавлен!');
+                })
+                .catch((error) => {
+                    console.error('Ошибка:', error);
+                    alert('Произошла ошибка при добавлении теста.');
+                });
+        });
+
+
+        document.getElementById('form4').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            fetch(this.action, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response;
+                })
+                .then(data => {
+                    console.log('Успех:', data);
+                    alert('Вопрос успешно добавлен!');
+                })
+                .catch((error) => {
+                    console.error('Ошибка:', error);
+                    alert('Произошла ошибка при добавлении вопроса.');
+                });
+        });
+
+        const buttonsection = document.getElementById('buttons');
+        const Button3 = document.createElement('div');
+        Button3.className = 'scroll-button';
+        Button3.textContent = 'Перейти к вводу данных';
+        const targetSection1 = document.getElementById('container2');
+        Button3.addEventListener('click', () => {
+            targetSection1.scrollIntoView({ behavior: 'smooth' });
+        });
+        buttonsection.appendChild(Button3);
+        const Button4 = document.createElement('div');
+        Button4.className = 'scroll-button';
+        Button4.textContent = 'Перейти к списку сотрудников';
+        const targetSection2 = document.getElementById('container3');
+        Button4.addEventListener('click', () => {
+            targetSection2.scrollIntoView({ behavior: 'smooth' });
+        });
+        buttonsection.appendChild(Button4);
+    </script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script>
+        async function main() {
+            async function emp_av_marks() {
+                const response = await fetch(`http://localhost:3001/api/emp-av`);
+                const data = await response.text();
+                const obj = JSON.parse(data);
+                alldata = obj;
+                const resultsBody = document.getElementById('table-body');
+                obj.forEach(item => {
+                    const row = resultsBody.insertRow();
+                    Object.entries(item).forEach(([key, value]) => {
+                        const cell = row.insertCell();
+                        cell.textContent = value;
+
+                    });
+                    const actionCell1 = row.insertCell();
+                    const button1 = document.createElement("button");
+                    button1.textContent = "Профиль";
+                    button1.onclick = function () {
+                        window.open(`/hr/profile/${item.empid}`, '_blank');
+                    };
+                    actionCell1.appendChild(button1);
+                });
+            }
+            await emp_av_marks();
+            let posavdata = null;
+            async function pos_av_marks() {
+                const response = await fetch(`http://localhost:3001/api/pos-av`);
+                const data = await response.text();
+                const obj = JSON.parse(data);
+                posavdata = obj;
+            }
+            await pos_av_marks();
+
+            console.log("posavdata", posavdata);
+            const svgBar = d3.select("#svg1"),
+                marginBar = { top: 20, right: 30, bottom: 80, left: 40 },
+                widthBar = +svgBar.attr("width") - marginBar.left - marginBar.right,
+                heightBar = +svgBar.attr("height") - marginBar.top - marginBar.bottom,
+                gBar = svgBar.append("g").attr("transform", `translate(${marginBar.left},${marginBar.top})`);
+
+            const xBar = d3.scaleBand()
+                .domain(posavdata.map(d => d.empposition))
+                .range([0, widthBar])
+                .padding(0.1);
+
+            const yBar = d3.scaleLinear()
+                .domain([0, 100])
+                .nice()
+                .range([heightBar, 0]);
+
+            gBar.append("g")
+                .attr("class", "axis axis--x")
+                .attr("transform", `translate(0,${heightBar})`)
+                .call(d3.axisBottom(xBar))
+                .selectAll("text")
+                .each(function (d) {
+                    const text = d3.select(this);
+                    const words = text.text().split(" ");
+                    text.text("");
+
+                    words.forEach((word, i) => {
+                        const tspan = text.append("tspan")
+                            .text(word)
+                            .attr("x", 0)
+                            .attr("dy", i === 0 ? 0 : "1.2em");
+                    });
+                })
+                .attr("text-anchor", "center")
+                .style("font-size", "12px")
+                .style("line-height", "1.2")
+                .style("white-space", "pre-wrap");
+
+            gBar.append("g")
+                .attr("class", "axis axis--y")
+                .call(d3.axisLeft(yBar));
+
+            gBar.selectAll(".bar")
+                .data(posavdata)
+                .enter().append("rect")
+                .attr("class", "bar")
+                .attr("x", d => xBar(d.empposition))
+                .attr("y", d => yBar(+d.avsoftresult))
+                .attr("width", xBar.bandwidth())
+                .attr("height", d => heightBar - yBar(+d.avsoftresult))
+                .attr("fill", "#6ba2fa")
+                .append("title")
+                .text(d => "Результат: " + d.avsoftresult);
+
+            const svgBar2 = d3.select("#svg2"),
+                marginBar2 = { top: 20, right: 30, bottom: 80, left: 40 },
+                widthBar2 = +svgBar2.attr("width") - marginBar2.left - marginBar2.right,
+                heightBar2 = +svgBar2.attr("height") - marginBar2.top - marginBar2.bottom,
+                gBar2 = svgBar2.append("g").attr("transform", `translate(${marginBar2.left},${marginBar2.top})`);
+
+            const xBarhard = d3.scaleBand()
+                .domain(posavdata.map(d => d.empposition))
+                .range([0, widthBar2])
+                .padding(0.1);
+
+            const yBarhard = d3.scaleLinear()
+                .domain([0, 100])
+                .nice()
+                .range([heightBar2, 0]);
+
+            gBar2.append("g")
+                .attr("class", "axis axis--x")
+                .attr("transform", `translate(0,${heightBar2})`)
+                .call(d3.axisBottom(xBarhard))
+                .selectAll("text")
+                .each(function (d) {
+                    const text = d3.select(this);
+                    const words = text.text().split(" ");
+                    text.text("");
+
+                    words.forEach((word, i) => {
+                        const tspan = text.append("tspan")
+                            .text(word)
+                            .attr("x", 0)
+                            .attr("dy", i === 0 ? 0 : "1.2em");
+                    });
+                })
+                .attr("text-anchor", "center")
+                .style("font-size", "12px")
+                .style("line-height", "1.2")
+                .style("white-space", "pre-wrap");
+
+            gBar2.append("g")
+                .attr("class", "axis axis--y")
+                .call(d3.axisLeft(yBarhard));
+
+            gBar2.selectAll(".bar")
+                .data(posavdata)
+                .enter().append("rect")
+                .attr("class", "bar")
+                .attr("x", d => xBarhard(d.empposition))
+                .attr("y", d => yBarhard(+d.avhardresult))
+                .attr("width", xBarhard.bandwidth())
+                .attr("height", d => heightBar2 - yBarhard(+d.avhardresult))
+                .attr("fill", d => d.softtrue ? "#6ba2fa" : "#ff6b6b")
+                .append("title")
+                .text(d => "Результат: " + d.avhardresult);
+        }
+        main();
+    </script>
+</body>
+
+</html>
