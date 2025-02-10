@@ -546,7 +546,6 @@
             };
             await last_results(getCookie("empid"));
             const data = lastdata;
-            await console.log("recomdata", data);
             const p2 = document.getElementById('p2');
             data.forEach(test => {
                 async function recomendation() {
@@ -556,7 +555,6 @@
                     const datatext = await response99.text();
                     const recomedationtext = JSON.parse(datatext);
                     recomedationtext.forEach(item => {
-                        console.log("Ssssssssssuka", item.rec);
                         employeeCard.innerHTML = item.rec;
                         p2.appendChild(employeeCard);
                     });
