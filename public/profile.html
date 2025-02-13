@@ -136,11 +136,13 @@
         }
 
         .right-panel .h1 {
-            font-size: 20px;
-            color: #354a82;
-            text-align: center;
-            width: 100%;
-        }
+        font-size: 20px;
+        color: #354a82;
+        text-align: center;
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
 
         .right-panel #svg1 {
             width: 100%;
@@ -295,14 +297,12 @@
             </table>
         </div>
         <div class="right-panel">
-            <div class="h1">
-                Результаты последних тестов
-            </div>
-            <svg width="700" height="400" id="svg1"></svg>
+            <div class="h1">Результаты последних тестов</div>
+            <canvas width="700" height="400" id="barChart"></canvas>
             <div class="h1" style="margin-top: 20px">
-                Изменение результатов по времени
+              Изменение результатов по времени
             </div>
-            <svg width="700" height="400" id="svg2"></svg>
+            <canvas width="700" height="400" id="lineChart"></canvas>
         </div>
     </div>
     <div class="container2">
@@ -317,6 +317,10 @@
         <p>Телефон: <a href="tel:+1234567890">+1 (234) 567-890</a></p>
     </div>
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
     <script type="module">
         async function main() {
             async function get_employee_info(id) {
@@ -381,158 +385,143 @@
             await get_employee_info(getCookie("empid"));
             await last_results(getCookie("empid"));
 
-            const data = lastdata;
-            console.log("lastdata", data);
-            const svgBar = d3.select("#svg1"),
-                marginBar = { top: 20, right: 30, bottom: 80, left: 40 },
-                widthBar = +svgBar.attr("width") - marginBar.left - marginBar.right,
-                heightBar = +svgBar.attr("height") - marginBar.top - marginBar.bottom,
-                gBar = svgBar.append("g").attr("transform", `translate(${marginBar.left},${marginBar.top})`);
+            //диаграмма
+        
+        const data = lastdata;
+        const labels = data.map((d) => d.typetestname.split(" ").join("\n"));
+        const testResults = data.map((d) => +d.testresult);
+        const backgroundColors = data.map((d) =>
+          d.softtrue ? "rgba(107, 162, 250, 0.6)" : "rgba(255, 107, 107, 0.6)"
+        );
 
-            const xBar = d3.scaleBand()
-                .domain(data.map(d => d.typetestname))
-                .range([0, widthBar])
-                .padding(0.1);
+        const ctxBar = document.getElementById("barChart").getContext("2d");
+        const barChart = new Chart(ctxBar, {
+          type: "bar",
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: "Результат теста",
+                data: testResults,
+                backgroundColor: backgroundColors,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              x: {
+                ticks: {
+                  autoSkip: false,
+                  maxRotation: 0,
+                  minRotation: 0,
+                  font: {
+                    size: 9,
+                    lineHeight: 1.5,
+                  },
+                },
+              },
+              y: {
+                beginAtZero: true,
+                max: 100,
+              },
+            },
+            plugins: {
+              tooltip: {
+                callbacks: {
+                  label: function (tooltipItem) {
+                    return "Результат: " + tooltipItem.raw;
+                  },
+                },
+              },
+            },
+          },
+        });
 
-            const yBar = d3.scaleLinear()
-                .domain([0, 100])
-                .nice()
-                .range([heightBar, 0]);
+        // график
+        const dataAll = alldata.map((d) => ({
+          testdate: new Date(d.testdate),
+          testresult: +d.testresult,
+          typetestname: d.typetestname,
+        }));
 
-            gBar.append("g")
-                .attr("class", "axis axis--x")
-                .attr("transform", `translate(0,${heightBar})`)
-                .call(d3.axisBottom(xBar))
-                .selectAll("text")
-                .each(function (d) {
-                    const text = d3.select(this);
-                    const words = text.text().split(" ");
-                    text.text("");
-                    words.forEach((word, i) => {
-                        const tspan = text.append("tspan")
-                            .text(word)
-                            .attr("x", 0)
-                            .attr("dy", i === 0 ? 0 : "1.2em");
-                    });
-                })
-                .attr("text-anchor", "center")
-                .style("font-size", "12px")
-                .style("line-height", "1.2")
-                .style("white-space", "pre-wrap");
+        const groupedData = d3.group(dataAll, (d) => d.typetestname);
+        const colorScale = d3.scaleOrdinal(d3.schemeSet3);
+        const datasets = Array.from(groupedData).map(([key, values], index) => {
+          return {
+            label: key,
+            data: values.map((d) => ({ x: d.testdate, y: d.testresult })),
+            borderColor: colorScale(key),
+            backgroundColor: colorScale(key),
+            fill: false,
+            tension: 0.1,
+          };
+        });
 
-            gBar.append("g")
-                .attr("class", "axis axis--y")
-                .call(d3.axisLeft(yBar));
-
-            gBar.selectAll(".bar")
-                .data(data)
-                .enter().append("rect")
-                .attr("class", "bar")
-                .attr("x", d => xBar(d.typetestname))
-                .attr("y", d => yBar(+d.testresult))
-                .attr("width", xBar.bandwidth())
-                .attr("height", d => heightBar - yBar(+d.testresult))
-                .attr("fill", d => d.softtrue ? "#6ba2fa" : "#ff6b6b")
-                .append("title")
-                .text(d => "Результат: " + d.testresult);
-
-            // График
-
-            const dataAll = alldata;
-            dataAll.forEach(d => {
-                d.testdate = new Date(d.testdate);
-                d.testresult = +d.testresult;
-            });
-
-            // Настройки графика
-            const marginLine = { top: 20, right: 30, bottom: 30, left: 40 },
-                widthLine = 600 - marginLine.left - marginLine.right,
-                heightLine = 400 - marginLine.top - marginLine.bottom;
-
-            const svgLine = d3.select("#svg2")
-                .append("g")
-                .attr("transform", `translate(${marginLine.left},${marginLine.top})`);
-
-            const xLine = d3.scaleTime()
-                .domain(d3.extent(dataAll, d => d.testdate))
-                .range([0, widthLine]);
-
-            const yLine = d3.scaleLinear()
-                .domain([0, 100])
-                .range([heightLine, 0]);
-
-            const colorLine = d3.scaleOrdinal(d3.schemeTableau10);
-
-            const line = d3.line()
-                .x(d => xLine(d.testdate))
-                .y(d => yLine(d.testresult))
-                .curve(d3.curveCatmullRom);
-
-            const nestedData = d3.group(dataAll, d => d.typetestname);
-
-            nestedData.forEach((values, key) => {
-                svgLine.append("path")
-                    .datum(values)
-                    .attr("class", "line")
-                    .attr("d", line)
-                    .attr("stroke", colorLine(key));
-            });
-
-            const xAxis = d3.axisBottom(xLine)
-                .ticks(d3.timeMonth.every(1))
-                .tickFormat(d => {
-                    const date = d3.timeFormat("%m")(d);
-                    const year = d3.timeFormat("%Y")(d);
-                    return `${date}\n${year}`;
-                });
-
-            const xAxisGroup = svgLine.append("g")
-                .attr("class", "axis axis--x")
-                .attr("transform", `translate(0,${heightLine})`)
-                .call(xAxis);
-
-            xAxisGroup.selectAll("text")
-                .attr("dy", "1.2em")
-                .style("text-anchor", "middle")
-                .each(function (d) {
-                    const text = d3.select(this);
-                    const options = { month: 'long', year: 'numeric', locale: 'ru-RU' };
-                    const formattedDate = d.toLocaleString('ru-RU', options);
-                    const [month, year] = formattedDate.split(' ');
-                    text.text("");
-                    text.append("tspan").text(month.toLocaleString('ru-RU', options)).attr("x", 0).attr("dy", 0);
-                    text.append("tspan").text(year).attr("x", 0).attr("dy", "1.2em");
-                });
-
-            svgLine.append("g")
-                .attr("class", "axis axis--y")
-                .call(d3.axisLeft(yLine));
-
-            let i = 0;
-            const legend = svgLine.append("g")
-                .attr("transform", `translate(${widthLine - 100}, 20)`)
-                .style("font-size", "10px");
-
-            console.log("nestedData", nestedData);
-            nestedData.forEach((values, key) => {
-                legend.append("rect")
-                    .attr("x", 27)
-                    .attr("y", i * 20)
-                    .attr("width", 15)
-                    .attr("height", 15)
-                    .style("fill", colorLine(key));
-
-                legend.append("text")
-                    .attr("x", 27 + 25)
-                    .attr("y", i * 20 + 20 / 2)
-                    .text(key);
-                i = i + 1;
-                console.log("i", i);
-            });
-
-        };
-
-        main();
+        const monthNames = [
+          "Янв",
+          "Февр",
+          "Март",
+          "Апр",
+          "Май",
+          "Июнь",
+          "Июль",
+          "Авг",
+          "Сент",
+          "Окт",
+          "Нояб",
+          "Дек",
+        ];
+        const ctxLine = document.getElementById("lineChart").getContext("2d");
+        const lineChart = new Chart(ctxLine, {
+          type: "line",
+          data: {
+            datasets: datasets,
+          },
+          options: {
+            scales: {
+              x: {
+                type: "time",
+                time: {
+                  unit: "month",
+                  tooltipFormat: "MMM d, yyyy",
+                  displayFormats: {
+                    month: "MMM yyyy",
+                  },
+                },
+                ticks: {
+                  autoSkip: false,
+                  maxRotation: 45,
+                  minRotation: 45,
+                  font: {
+                    size: 9,
+                    lineHeight: 1.5,
+                  },
+                  callback: function (value) {
+                    const date = new Date(value);
+                    return (
+                      monthNames[date.getMonth()] + " " + date.getFullYear()
+                    );
+                  },
+                },
+              },
+              y: {
+                beginAtZero: true,
+                max: 100,
+              },
+            },
+            plugins: {
+              tooltip: {
+                callbacks: {
+                  label: function (tooltipItem) {
+                    return "Результат: " + tooltipItem.raw.y;
+                  },
+                },
+              },
+            },
+          },
+        });
+      }
+      main();
 
     </script>
     <script>
