@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const controller = require("c:/Users/m_gum/Documents/case/controllers/DataController");
+const controller = require("../controllers/dataController");
 const router = Router();
 router.get("/all-results/:id", controller.get_all_test_results);
 router.get("/last-results/:id", controller.get_last_test_results);
