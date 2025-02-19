@@ -8,7 +8,7 @@ CREATE TABLE Employee
 	EmpMail VARCHAR(60) NOT NULL UNIQUE CHECK (EmpMail ~ '^[^@]+@[^@]+\.[^@]+$'),
 	EmpPassword VARCHAR(60) NOT NULL,
 	PositionId INT NOT NULL,
-	FOREIGN KEY (PositionId) REFERENCES Position(PositionId) ON DELETE CASCADE;
+	FOREIGN KEY (PositionId) REFERENCES Position(PositionId) ON DELETE CASCADE
 );
 
 CREATE TABLE TypeTest

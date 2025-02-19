@@ -26,7 +26,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT * FROM current_date
 CREATE TRIGGER check_hr_before_insert
 BEFORE INSERT OR UPDATE ON Interview
 FOR EACH ROW
